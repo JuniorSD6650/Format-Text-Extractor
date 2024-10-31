@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento Cargado</title>
+</head>
+<body>
+    <h2>Documento Cargado</h2>
+    {% if documento.es_pdf %}
+        <p>El archivo es un PDF: <a href="{% url 'ver_documento' documento.id %}" target="_blank">Ver PDF con cuadros</a></p>
+        
+        <!-- Botón para extraer texto -->
+        <form action="{% url 'extraer_texto' documento.id %}" method="get">
+            <button type="submit">Extraer texto de los cuadros</button>
+        </form>
+
+        {% if texto_cuadro_rojo %}
+            <h3>Cuadro rojo contiene:</h3>
+            <ul>
+                {% for item in texto_cuadro_rojo %}
+                    <li><strong>{{ item.etiqueta }}:</strong> {{ item.valor }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if texto_cuadro_verde %}
+            <h3>Cuadro verde contiene:</h3>
+            <ul>
+                {% for curso in texto_cuadro_verde %}
+                    <li>{{ curso }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endif %}
+</body>
+</html>
