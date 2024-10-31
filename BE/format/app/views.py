@@ -57,9 +57,11 @@ def extraer_texto(request, documento_id):
         raw_text_verde = pagina.get_text("text", clip=RECTANGLES["verde"]["rect"])
         cursos = raw_text_verde.split("-")  # Separar cada curso con su docente
         for curso in cursos:
-            curso_info = curso.strip()
-            if curso_info:
-                texto_cuadro_verde.append(curso_info)
+            partes = curso.split("Docente")
+            if len(partes) == 2:
+                nombre_curso = partes[0].strip()
+                nombre_docente = partes[1].strip()
+                texto_cuadro_verde.append({"curso": nombre_curso, "docente": nombre_docente})
 
         pdf.close()
 

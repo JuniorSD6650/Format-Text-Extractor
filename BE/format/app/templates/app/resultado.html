@@ -27,8 +27,11 @@
         {% if texto_cuadro_verde %}
             <h3>Cuadro verde contiene:</h3>
             <ul>
-                {% for curso in texto_cuadro_verde %}
-                    <li>{{ curso }}</li>
+                {% for item in texto_cuadro_verde %}
+                    <li><strong>{{ item.curso }}</strong>
+                        <br>
+                        <span style="margin-left: 20px;">Docente: {{ item.docente }}</span>
+                    </li>
                 {% endfor %}
             </ul>
         {% endif %}
